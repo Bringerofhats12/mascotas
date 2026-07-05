@@ -1,0 +1,58 @@
+<div class="toolbar">
+  <h2>Mascotas registradas</h2>
+  <a href="/mascotas/nuevo" class="btn btn-primary">+ Nueva mascota</a>
+</div>
+
+<% if (error) { %>
+  <div class="alert alert-error"><%= error %></div>
+<% } %>
+
+<% if (!error && mascotas.length === 0) { %>
+  <p class="empty">No hay mascotas registradas todavía. ¡Registra la primera! 🐶</p>
+<% } else if (!error) { %>
+  <div class="table-wrapper">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Nombre</th>
+          <th>Especie</th>
+          <th>Raza</th>
+          <th>Dueño</th>
+          <th>Dirección</th>
+          <th>Número</th>
+          <th>En establecimiento</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% mascotas.forEach(m => { %>
+        <tr>
+          <td data-label="Nombre" class="cell-nombre">
+            <img src="/images/mascota-<%= m.Id %>.png" alt="Foto de <%= m.Nombre %>" class="mascota-thumb"
+                 onerror="this.onerror=null; this.src='/images/mascota-placeholder.png';" />
+            <span><%= m.Nombre %></span>
+          </td>
+          <td data-label="Especie"><%= m.Especie %></td>
+          <td data-label="Raza"><%= m.Raza %></td>
+          <td data-label="Dueño"><%= m.Dueno %></td>
+          <td data-label="Dirección"><%= m.Direccion %></td>
+          <td data-label="Número"><%= m.Numero %></td>
+          <td data-label="En establecimiento">
+            <span class="badge <%= m.EnEstablecimiento === 'si' ? 'badge-yes' : 'badge-no' %>">
+              <%= m.EnEstablecimiento === 'si' ? 'Sí' : 'No' %>
+            </span>
+          </td>
+          <td class="actions" data-label="Acciones">
+            <a href="/mascotas/<%= m.Id %>/editar" class="btn btn-small btn-edit">Editar</a>
+            <form action="/mascotas/<%= m.Id %>?_method=DELETE" method="POST"
+                  onsubmit="return confirm('¿Seguro que deseas eliminar a &quot;<%= m.Nombre %>&quot;?');"
+                  style="display:inline;">
+              <button type="submit" class="btn btn-small btn-delete">Eliminar</button>
+            </form>
+          </td>
+        </tr>
+        <% }) %>
+      </tbody>
+    </table>
+  </div>
+<% } %>

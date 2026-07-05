@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Patitas con Amor 🐾</title>
+  <link rel="stylesheet" href="/css/style.css" />
+</head>
+<body>
+  <header class="header">
+    <div class="header-content">
+      <span class="logo">🐾</span>
+      <h1>Patitas con Amor</h1>
+    </div>
+    <p class="subtitle">Sistema de gestión de mascotas de la veterinaria</p>
+
+    <% if (typeof usuarioActivo !== 'undefined' && usuarioActivo) { %>
+      <div class="user-bar">
+        <span class="user-bar-info">👤 Sesión activa: <strong><%= usuarioActivo.nombre %></strong></span>
+        <form action="/logout" method="POST" class="user-bar-logout">
+          <button type="submit" class="btn btn-small btn-secondary">Cerrar sesión</button>
+        </form>
+      </div>
+    <% } %>
+  </header>
+
+  <main class="container">
+    <%- body %>
+  </main>
+
+  <footer class="footer">
+    <p>Patitas con Amor &copy; <%= new Date().getFullYear() %></p>
+  </footer>
+</body>
+</html>

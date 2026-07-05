@@ -1,0 +1,53 @@
+<div class="form-header">
+  <h2>Registrar nueva mascota</h2>
+  <a href="/mascotas" class="btn btn-link">← Volver al listado</a>
+</div>
+
+<% if (error) { %>
+  <div class="alert alert-error"><%= error %></div>
+<% } %>
+
+<form action="/mascotas" method="POST" class="form">
+  <div class="form-group">
+    <label for="nombre">Nombre de la mascota *</label>
+    <input type="text" id="nombre" name="nombre" required />
+  </div>
+
+  <div class="form-group">
+    <label for="especie">Especie *</label>
+    <input type="text" id="especie" name="especie" placeholder="Perro, gato, ave..." required />
+  </div>
+
+  <div class="form-group">
+    <label for="raza">Raza</label>
+    <input type="text" id="raza" name="raza" placeholder="Si se deja vacío se guardará como 'desconocida'" />
+  </div>
+
+  <div class="form-group">
+    <label for="dueno">Nombre del dueño *</label>
+    <input type="text" id="dueno" name="dueno" required />
+  </div>
+
+  <div class="form-group">
+    <label for="direccion">Dirección del dueño *</label>
+    <input type="text" id="direccion" name="direccion" required />
+  </div>
+
+  <div class="form-group">
+    <label for="numero">Número de contacto *</label>
+    <input type="text" id="numero" name="numero" required />
+  </div>
+
+  <div class="form-group">
+    <label for="enEstablecimiento">¿La mascota está en el establecimiento?</label>
+    <select id="enEstablecimiento" name="enEstablecimiento">
+      <option value="no">No</option>
+      <option value="si">Sí</option>
+    </select>
+  </div>
+
+  <div class="form-actions">
+    <a href="/mascotas" class="btn btn-secondary">Cancelar</a>
+    <button type="submit" class="btn btn-primary">Guardar mascota</button>
+  </div>
+</form>

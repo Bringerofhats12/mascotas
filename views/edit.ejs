@@ -1,0 +1,53 @@
+<div class="form-header">
+  <h2>Editar mascota</h2>
+  <a href="/mascotas" class="btn btn-link">← Volver al listado</a>
+</div>
+
+<% if (error) { %>
+  <div class="alert alert-error"><%= error %></div>
+<% } %>
+
+<form action="/mascotas/<%= mascota.Id %>?_method=PUT" method="POST" class="form">
+  <div class="form-group">
+    <label for="nombre">Nombre de la mascota *</label>
+    <input type="text" id="nombre" name="nombre" value="<%= mascota.Nombre %>" required />
+  </div>
+
+  <div class="form-group">
+    <label for="especie">Especie *</label>
+    <input type="text" id="especie" name="especie" value="<%= mascota.Especie %>" required />
+  </div>
+
+  <div class="form-group">
+    <label for="raza">Raza</label>
+    <input type="text" id="raza" name="raza" value="<%= mascota.Raza %>" placeholder="Si se deja vacío se guardará como 'desconocida'" />
+  </div>
+
+  <div class="form-group">
+    <label for="dueno">Nombre del dueño *</label>
+    <input type="text" id="dueno" name="dueno" value="<%= mascota.Dueno %>" required />
+  </div>
+
+  <div class="form-group">
+    <label for="direccion">Dirección del dueño *</label>
+    <input type="text" id="direccion" name="direccion" value="<%= mascota.Direccion %>" required />
+  </div>
+
+  <div class="form-group">
+    <label for="numero">Número de contacto *</label>
+    <input type="text" id="numero" name="numero" value="<%= mascota.Numero %>" required />
+  </div>
+
+  <div class="form-group">
+    <label for="enEstablecimiento">¿La mascota está en el establecimiento?</label>
+    <select id="enEstablecimiento" name="enEstablecimiento">
+      <option value="no" <%= mascota.EnEstablecimiento === 'no' ? 'selected' : '' %>>No</option>
+      <option value="si" <%= mascota.EnEstablecimiento === 'si' ? 'selected' : '' %>>Sí</option>
+    </select>
+  </div>
+
+  <div class="form-actions">
+    <a href="/mascotas" class="btn btn-secondary">Cancelar</a>
+    <button type="submit" class="btn btn-primary">Actualizar mascota</button>
+  </div>
+</form>
